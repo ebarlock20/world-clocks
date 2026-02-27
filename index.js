@@ -15,13 +15,24 @@ function updateTime() {
   newYorkDateElement.innerHTML = newYorkTime.format("MMMM Do YYYY");
   newYorkTimeElement.innerHTML = `${newYorkTime.format("h:mm:ss [<small>]A[</small>]")}`;
 
-  let tokyoElement = document.querySelector("#tokyo");
-  let tokyoDateElement = tokyoElement.querySelector(".date");
-  let tokyoTimeElement = tokyoElement.querySelector(".time");
-  let tokyoTime = moment().tz("Asia/Tokyo");
+  let koreaElement = document.querySelector("#korea");
+  let koreaDateElement = koreaElement.querySelector(".date");
+  let koreaTimeElement = koreaElement.querySelector(".time");
+  let koreaTime = moment().tz("Asia/Seoul");
 
-  tokyoDateElement.innerHTML = tokyoTime.format("MMMM Do YYYY");
-  tokyoTimeElement.innerHTML = `${tokyoTime.format("h:mm:ss [<small>]A[</small>]")}`;
+  koreaDateElement.innerHTML = koreaTime.format("MMMM Do YYYY");
+  koreaTimeElement.innerHTML = `${koreaTime.format("h:mm:ss [<small>]A[</small>]")}`;
 }
+
+function updateCity(event) {
+  let cityTimeZone = event.target.value;
+  let cityTime = moment().tz(cityTimeZone);
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML = "Hello";
+}
+
 updateTime();
 setInterval(updateTime, 1000);
+
+let citiesSelectElement = document.querySelector("#city");
+citiesSelectElement.addEventListener("change", updateCity);
